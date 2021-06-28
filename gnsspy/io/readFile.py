@@ -16,6 +16,7 @@ from gnsspy.funcs.checkif import (isfloat, isint, isexist)
 from gnsspy.funcs.date import doy2date
 from gnsspy.funcs.constants import _system_name
 from gnsspy.io.io import Observation, Navigation, PEphemeris, _ObservationTypes
+import os.path
 # ===========================================================
 
 #-------------------------------------------------------------------------
@@ -182,7 +183,7 @@ def read_navFile(navigationFile):
 #-------------------------------------------------------------------------
 #-------------------------------------------------------------------------
 def read_obsFile(observationFile):
-    if observationFile.endswith(".Z")==True:
+    if os.path.splitext(observationFile)[1] == ".Z":
         raise Warning("All I/O functions take uncompressed files as an input (remove .Z/.gz from filename) | Next release will include this feature...")
     # check if observationFile exists or not
     isexist(observationFile)
@@ -352,7 +353,7 @@ def read_obsFile_v2(observationFile):
 def read_obsFile_v3(obsFileName):
     start = time.time() # Time of start
 
-    if obsFileName.endswith("crx"): obsFileName = obsFileName.split(".")[0] + ".rnx"
+    if os.path.splitext(obsFileName)[1] == ".crx": obsFileName = obsFileName.split(".")[0] + ".rnx"
     f = open(obsFileName, errors = 'ignore') # open file
     obsLines = f.readlines() # read lines
     # =============================================================================

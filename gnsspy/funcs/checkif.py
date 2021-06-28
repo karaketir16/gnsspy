@@ -89,14 +89,14 @@ def isexist(fileName):
                 extract_archive(fileName + ".Z", outdir=_CWD)
             else:
                 raise Warning("Unknown file extension:",extension.lower())
-        elif (os.path.exists(fileName + ".Z") == True) and (fileName.endswith(".Z")==True):
+        elif (os.path.exists(fileName + ".Z") == True) and (os.path.splitext(fileName)[1] == ".Z"):
             print(fileName + " exists in working directory | Extracting...")
             extract_archive(fileName, outdir=_CWD)
         else:
             print(fileName + ".Z exists in working directory | Extracting...")
             extract_archive(fileName + ".Z", outdir=_CWD)
-    elif (os.path.exists(fileName) == True) and (fileName.endswith(".Z")==True):
+    elif (os.path.exists(fileName) == True) and (os.path.splitext(fileName)[1] == ".Z"):
         print(fileName + " exists in working directory | Extracting...")
         extract_archive(fileName, outdir=_CWD)
     else:
-        print(fileName + " exist in working directory | Reading...")
+        print(str(fileName) + " exist in working directory | Reading...")
