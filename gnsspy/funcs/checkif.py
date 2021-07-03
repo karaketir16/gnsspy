@@ -40,6 +40,7 @@ def check_internet():
         return False
 
 def isexist(fileName):
+    fileName = str(fileName)
     if os.path.exists(fileName) == False:
         if (os.path.exists(fileName + ".Z") == False) and (fileName.endswith(".Z")==False):
             extension = fileName.split(".")[1]
